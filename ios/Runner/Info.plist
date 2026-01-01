@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Aura Verify Business</string>
+	<string>Aura Verify</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>aura_verify_business</string>
+	<string>Aura Verify</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -44,6 +44,47 @@
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
+
+	<!-- Camera Permission for QR Code Scanning -->
+	<key>NSCameraUsageDescription</key>
+	<string>Aura Verify needs camera access to scan QR codes for credential verification.</string>
+
+	<!-- Photo Library Permission (for saving verification results) -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Aura Verify needs photo library access to save verification screenshots.</string>
+
+	<!-- Face ID Permission (for secure authentication) -->
+	<key>NSFaceIDUsageDescription</key>
+	<string>Aura Verify uses Face ID to securely authenticate you.</string>
+
+	<!-- Network/Internet Access -->
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<!-- Enforce HTTPS only - no HTTP exceptions -->
+		<key>NSAllowsArbitraryLoads</key>
+		<false/>
+	</dict>
+
+	<!-- Background Modes (for batch verification) -->
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>processing</string>
+	</array>
+
+	<!-- Prevent backup of sensitive data -->
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+
+	<!-- Minimum iOS version -->
+	<key>MinimumOSVersion</key>
+	<string>12.0</string>
+
+	<!-- Status bar style -->
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
 </dict>
 </plist>
