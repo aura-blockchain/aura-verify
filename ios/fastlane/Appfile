@@ -1,0 +1,14 @@
+# App identifier (bundle ID)
+app_identifier("io.aura.verify.business")
+
+# Your Apple Developer account email
+# apple_id("your-apple-id@example.com")
+
+# Your App Store Connect Team ID (if applicable)
+# itc_team_id("123456789")
+
+# Your Apple Developer Portal Team ID
+# team_id("ABCD1234EF")
+
+# For more information about the Appfile, see:
+# https://docs.fastlane.tools/advanced/#appfile
