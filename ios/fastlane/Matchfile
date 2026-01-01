@@ -1,0 +1,41 @@
+# Matchfile - Fastlane Match Configuration
+# Match syncs certificates and provisioning profiles across your team
+
+# Git repository for storing encrypted certificates
+# Create a private repo like: github.com/aura-blockchain/certificates
+git_url(ENV["MATCH_GIT_URL"] || "git@github.com:aura-blockchain/certificates.git")
+
+# Storage mode: git, s3, google_cloud, or azure_blob
+storage_mode("git")
+
+# Type of provisioning profile
+# Options: appstore, adhoc, development, enterprise
+type("appstore")
+
+# App identifier(s) - can be an array for multiple apps
+app_identifier(["io.aura.verify.business"])
+
+# Apple Developer username (email)
+# Prefer API key authentication for CI/CD
+username(ENV["APPLE_ID"] || "developer@aura.io")
+
+# Team ID for Apple Developer Portal
+team_id(ENV["APPLE_TEAM_ID"] || "TEAM_ID_HERE")
+
+# For CI/CD: Set MATCH_PASSWORD environment variable
+# This password encrypts/decrypts your certificates in the git repo
+
+# Generate a new password: openssl rand -base64 24
+# Store it securely in GitHub Secrets as MATCH_PASSWORD
+
+# Platform: ios, macos, or catalyst
+platform("ios")
+
+# Clone the certificates repo using SSH (recommended for CI/CD)
+git_basic_authorization(Base64.strict_encode64(ENV["MATCH_GIT_BASIC_AUTHORIZATION"])) if ENV["MATCH_GIT_BASIC_AUTHORIZATION"]
+
+# Shallow clone for faster CI/CD
+shallow_clone(true)
+
+# Read-only mode for CI/CD (don't create new certs)
+readonly(ENV["CI"] == "true")

@@ -2,17 +2,38 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <!-- Export method: app-store, ad-hoc, enterprise, development -->
     <key>method</key>
     <string>app-store</string>
+
+    <!-- Apple Developer Team ID (10 characters) -->
+    <!-- Replace TEAM_ID_HERE with your actual Team ID -->
+    <!-- Or set via CI: sed -i 's/TEAM_ID_HERE/YOUR_TEAM_ID/g' ExportOptions.plist -->
     <key>teamID</key>
     <string>TEAM_ID_HERE</string>
+
+    <!-- Bitcode is deprecated as of Xcode 14 -->
     <key>uploadBitcode</key>
     <false/>
+
+    <!-- Upload dSYM symbols for crash reporting -->
     <key>uploadSymbols</key>
     <true/>
+
+    <!-- Signing style: automatic or manual -->
     <key>signingStyle</key>
     <string>automatic</string>
+
+    <!-- Export destination -->
     <key>destination</key>
     <string>export</string>
+
+    <!-- For App Store submissions -->
+    <key>generateAppStoreInformation</key>
+    <true/>
+
+    <!-- Strip Swift symbols to reduce binary size -->
+    <key>stripSwiftSymbols</key>
+    <true/>
 </dict>
 </plist>

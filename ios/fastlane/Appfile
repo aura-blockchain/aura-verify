@@ -1,14 +1,24 @@
 # App identifier (bundle ID)
 app_identifier("io.aura.verify.business")
 
-# Your Apple Developer account email
-# apple_id("your-apple-id@example.com")
+# Apple Developer Portal Team ID
+# Set this to your 10-character Apple Developer Team ID
+# Find it at: https://developer.apple.com/account -> Membership Details
+team_id(ENV["APPLE_TEAM_ID"] || "TEAM_ID_HERE")
 
-# Your App Store Connect Team ID (if applicable)
-# itc_team_id("123456789")
+# App Store Connect Team ID (usually same as team_id for individual accounts)
+itc_team_id(ENV["APP_STORE_CONNECT_TEAM_ID"] || ENV["APPLE_TEAM_ID"] || "TEAM_ID_HERE")
 
-# Your Apple Developer Portal Team ID
-# team_id("ABCD1234EF")
+# App Store Connect API Key Authentication
+# This is the preferred method for CI/CD - no 2FA required
+# Create an API key at: https://appstoreconnect.apple.com/access/api
+#
+# Required environment variables for CI/CD:
+#   APP_STORE_CONNECT_API_KEY_ID      - The Key ID (e.g., "ABC123XYZ")
+#   APP_STORE_CONNECT_API_ISSUER_ID   - The Issuer ID from API Keys page
+#   APP_STORE_CONNECT_API_KEY_BASE64  - Base64-encoded .p8 key file content
+#
+# To encode your .p8 key: base64 -i AuthKey_KEYID.p8 | tr -d '\n'
 
 # For more information about the Appfile, see:
 # https://docs.fastlane.tools/advanced/#appfile

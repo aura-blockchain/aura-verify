@@ -1,12 +1,39 @@
 default_platform(:ios)
 
+# App Store Connect API Key setup for CI/CD
+def setup_api_key
+  if ENV["APP_STORE_CONNECT_API_KEY_ID"] &&
+     ENV["APP_STORE_CONNECT_API_ISSUER_ID"] &&
+     ENV["APP_STORE_CONNECT_API_KEY_BASE64"]
+
+    # Decode the API key from base64
+    api_key_path = File.join(Dir.tmpdir, "AuthKey.p8")
+    File.write(api_key_path, Base64.decode64(ENV["APP_STORE_CONNECT_API_KEY_BASE64"]))
+
+    app_store_connect_api_key(
+      key_id: ENV["APP_STORE_CONNECT_API_KEY_ID"],
+      issuer_id: ENV["APP_STORE_CONNECT_API_ISSUER_ID"],
+      key_filepath: api_key_path,
+      in_house: false
+    )
+  else
+    UI.message("No API key environment variables found. Using local authentication.")
+    nil
+  end
+end
+
 platform :ios do
-  desc "Build iOS app for testing"
+  before_all do
+    # Setup API key if available
+    @api_key = setup_api_key
+  end
+
+  desc "Build iOS app for testing (no code signing)"
   lane :build do
     # Get Flutter dependencies
     sh("cd ../.. && flutter pub get")
 
-    # Build iOS
+    # Build iOS without code signing for CI testing
     sh("cd ../.. && flutter build ios --release --no-codesign")
   end
 
@@ -19,18 +46,28 @@ platform :ios do
     # Build iOS release
     sh("cd ../.. && flutter build ios --release")
 
+    # Increment build number automatically
+    increment_build_number(
+      xcodeproj: "Runner.xcodeproj"
+    )
+
     # Build the app
     build_app(
       workspace: "Runner.xcworkspace",
       scheme: "Runner",
       export_method: "app-store",
-      output_directory: "../build/ios/ipa"
+      output_directory: "../build/ios/ipa",
+      clean: true
     )
 
     # Upload to TestFlight
-    upload_to_testflight(
-      skip_waiting_for_build_processing: true
-    )
+    upload_options = {
+      skip_waiting_for_build_processing: true,
+      changelog: "Automated build from CI/CD pipeline"
+    }
+    upload_options[:api_key] = @api_key if @api_key
+
+    upload_to_testflight(upload_options)
   end
 
   desc "Build and deploy to App Store"
@@ -42,23 +79,34 @@ platform :ios do
     # Build iOS release
     sh("cd ../.. && flutter build ios --release")
 
+    # Increment build number automatically
+    increment_build_number(
+      xcodeproj: "Runner.xcodeproj"
+    )
+
     # Build the app
     build_app(
       workspace: "Runner.xcworkspace",
       scheme: "Runner",
       export_method: "app-store",
-      output_directory: "../build/ios/ipa"
+      output_directory: "../build/ios/ipa",
+      clean: true
     )
 
     # Upload to App Store Connect
-    upload_to_app_store(
+    upload_options = {
       skip_screenshots: true,
       skip_metadata: false,
-      force: true
-    )
+      force: true,
+      submit_for_review: false,
+      automatic_release: false
+    }
+    upload_options[:api_key] = @api_key if @api_key
+
+    upload_to_app_store(upload_options)
   end
 
-  desc "Run tests"
+  desc "Run Flutter tests"
   lane :test do
     sh("cd ../.. && flutter test")
   end
@@ -68,5 +116,31 @@ platform :ios do
     increment_build_number(
       xcodeproj: "Runner.xcodeproj"
     )
+  end
+
+  desc "Get current build number"
+  lane :get_version do
+    version = get_version_number(
+      xcodeproj: "Runner.xcodeproj",
+      target: "Runner"
+    )
+    build = get_build_number(xcodeproj: "Runner.xcodeproj")
+    UI.success("Current version: #{version} (#{build})")
+  end
+
+  desc "Sync code signing certificates (requires match setup)"
+  lane :sync_certs do
+    if @api_key
+      match(
+        type: "appstore",
+        readonly: true,
+        api_key: @api_key
+      )
+    else
+      match(
+        type: "appstore",
+        readonly: true
+      )
+    end
   end
 end
