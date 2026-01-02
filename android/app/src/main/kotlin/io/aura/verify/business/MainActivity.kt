@@ -1,4 +1,4 @@
-package com.example.aura_verify_business
+package io.aura.verify.business
 
 import io.flutter.embedding.android.FlutterActivity
 
