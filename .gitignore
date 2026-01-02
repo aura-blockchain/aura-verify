@@ -54,13 +54,8 @@ app.*.map.json
 /ios/Runner/GeneratedPluginRegistrant.*
 /ios/Flutter/Generated.xcconfig
 
-# Web
+# Web (generated files only)
 /web/favicon.png
-/web/icons/Icon-192.png
-/web/icons/Icon-512.png
-/web/icons/Icon-maskable-192.png
-/web/icons/Icon-maskable-512.png
-/web/manifest.json
 
 # Environment
 .env
