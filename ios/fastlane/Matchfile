@@ -17,10 +17,10 @@ app_identifier(["io.aura.verify.business"])
 
 # Apple Developer username (email)
 # Prefer API key authentication for CI/CD
-username(ENV["APPLE_ID"] || "developer@aura.io")
+username(ENV["APPLE_ID"])
 
 # Team ID for Apple Developer Portal
-team_id(ENV["APPLE_TEAM_ID"] || "TEAM_ID_HERE")
+team_id(ENV["APPLE_TEAM_ID"])
 
 # For CI/CD: Set MATCH_PASSWORD environment variable
 # This password encrypts/decrypts your certificates in the git repo

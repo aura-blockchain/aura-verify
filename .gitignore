@@ -63,3 +63,49 @@ app.*.map.json
 
 # Coverage
 coverage/
+
+# Claude AI / Development tools
+.claude/
+.cursor/
+.aider*
+
+# Secrets and credentials
+*.pem
+*.key
+*.keystore
+*.jks
+key.properties
+*.p12
+*.pfx
+secrets.json
+credentials.json
+
+# Internal development docs
+IMPLEMENTATION.md
+FILES_CREATED.md
+QUICK_START.md
+
+# Build outputs
+*.apk
+*.aab
+*.ipa
+*.dSYM/
+
+# Logs
+*.log
+logs/
+
+# Temp files
+*.tmp
+*.temp
+*~
+*.bak
+
+# Linux build
+/linux/flutter/ephemeral/
+
+# macOS build
+/macos/Flutter/ephemeral/
+
+# Windows build
+/windows/flutter/ephemeral/

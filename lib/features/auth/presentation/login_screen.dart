@@ -196,7 +196,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                             // Info Text
                             Text(
-                              'Default: admin / admin123',
+                              'Contact your administrator for credentials',
                               textAlign: TextAlign.center,
                               style: theme.textTheme.bodySmall?.copyWith(
                                 color: Colors.grey[600],
