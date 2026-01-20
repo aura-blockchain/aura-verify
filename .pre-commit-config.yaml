@@ -1,0 +1,78 @@
+# Pre-commit hooks for Aura Verify (Flutter/Dart)
+# Install: pre-commit install
+# Run manually: pre-commit run --all-files
+
+repos:
+  # General hygiene
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-added-large-files
+        args: ['--maxkb=1000']
+      - id: check-merge-conflict
+      - id: mixed-line-ending
+        args: ['--fix=lf']
+      - id: check-case-conflict
+      - id: check-symlinks
+
+  # Secret detection
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.18.0
+    hooks:
+      - id: gitleaks
+        name: Detect secrets with gitleaks
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
+    hooks:
+      - id: detect-secrets
+        name: Detect secrets baseline
+        args: ['--baseline', '.secrets.baseline']
+
+  # Markdown and YAML
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.37.0
+    hooks:
+      - id: markdownlint
+        args: ['--disable', 'MD013', 'MD033', 'MD041']
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.33.0
+    hooks:
+      - id: yamllint
+        args: ['-d', '{extends: relaxed, rules: {line-length: {max: 150}}}']
+
+  # Dart formatting and analysis
+  - repo: local
+    hooks:
+      - id: dart-format
+        name: Dart format
+        entry: dart
+        args: ['format']
+        language: system
+        files: '\\.(dart)$'
+        stages: [manual]
+      - id: dart-analyze
+        name: Dart analyze
+        entry: dart
+        args: ['analyze']
+        language: system
+        pass_filenames: false
+        stages: [manual]
+
+exclude: |
+  (?x)^(
+    build/|
+    android/|
+    ios/|
+    linux/|
+    macos/|
+    web/|
+    windows/|
+    vendor/|
+    node_modules/|
+    third_party/|
+    \.git/
+  )$
