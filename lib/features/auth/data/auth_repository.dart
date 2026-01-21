@@ -429,7 +429,7 @@ class AuthRepository {
       final lastAttempt = DateTime.tryParse(userAttempts['lastAttempt'] ?? '');
 
       if (count >= _maxFailedAttempts && lastAttempt != null) {
-        final lockoutEnd = lastAttempt.add(Duration(minutes: _lockoutMinutes));
+        final lockoutEnd = lastAttempt.add(const Duration(minutes: _lockoutMinutes));
         if (DateTime.now().isBefore(lockoutEnd)) {
           final remaining = lockoutEnd.difference(DateTime.now()).inMinutes + 1;
           return 'Account locked. Try again in $remaining minutes';
@@ -446,7 +446,7 @@ class AuthRepository {
   /// Record a failed login attempt
   Future<void> _recordFailedAttempt(String username) async {
     final attemptsJson = await _secureStorage.read(key: _failedAttemptsKey);
-    Map<String, dynamic> attempts = {};
+    var attempts = <String, dynamic>{};
 
     if (attemptsJson != null) {
       try {

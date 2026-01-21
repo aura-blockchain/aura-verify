@@ -10,17 +10,16 @@ class ScannerOverlay extends StatelessWidget {
   final Color overlayColor;
 
   const ScannerOverlay({
-    Key? key,
+    super.key,
     this.scanAreaSize = 280.0,
     this.borderRadius = 16.0,
     this.borderWidth = 3.0,
     this.borderColor = AuraTheme.secondaryTeal,
     this.overlayColor = Colors.black54,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
     final isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
 
     // Adjust scan area for landscape
@@ -87,7 +86,7 @@ class ScannerOverlay extends StatelessWidget {
 
 /// Animated scanning line
 class _ScanningLine extends StatefulWidget {
-  const _ScanningLine({Key? key}) : super(key: key);
+  const _ScanningLine();
 
   @override
   State<_ScanningLine> createState() => _ScanningLineState();
@@ -130,13 +129,13 @@ class _ScanningLineState extends State<_ScanningLine>
               gradient: LinearGradient(
                 colors: [
                   Colors.transparent,
-                  AuraTheme.secondaryTeal.withOpacity(0.8),
+                  AuraTheme.secondaryTeal.withValues(alpha: 0.8),
                   Colors.transparent,
                 ],
               ),
               boxShadow: [
                 BoxShadow(
-                  color: AuraTheme.secondaryTeal.withOpacity(0.5),
+                  color: AuraTheme.secondaryTeal.withValues(alpha: 0.5),
                   blurRadius: 8,
                   spreadRadius: 2,
                 ),

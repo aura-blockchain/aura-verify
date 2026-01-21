@@ -177,8 +177,8 @@ class HistoryRepository {
   }) async {
     final db = await database;
 
-    String whereClause = '';
-    List<dynamic> whereArgs = [];
+    var whereClause = '';
+    var whereArgs = <dynamic>[];
 
     if (startDate != null && endDate != null) {
       whereClause = 'WHERE verified_at BETWEEN ? AND ?';

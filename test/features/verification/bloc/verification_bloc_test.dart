@@ -267,7 +267,7 @@ void main() {
     blocTest<bloc.VerificationBloc, bloc.VerificationState>(
       'resets to initial state',
       build: () => bloc.VerificationBloc(verificationService: mockService),
-      seed: () => bloc.VerificationFailure(error: 'Previous error'),
+      seed: () => const bloc.VerificationFailure(error: 'Previous error'),
       act: (b) => b.add(const bloc.ResetVerification()),
       expect: () => [isA<bloc.VerificationInitial>()],
     );

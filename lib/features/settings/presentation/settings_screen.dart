@@ -115,10 +115,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
           // About
           _buildSectionHeader('About'),
-          ListTile(
-            leading: const Icon(Icons.info_outline),
-            title: const Text('Version'),
-            subtitle: const Text('1.0.0 (Build 1)'),
+          const ListTile(
+            leading: Icon(Icons.info_outline),
+            title: Text('Version'),
+            subtitle: Text('1.0.0 (Build 1)'),
           ),
           ListTile(
             leading: const Icon(Icons.description),
@@ -149,7 +149,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
       child: Text(
         title.toUpperCase(),
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.w600,
           color: AuraTheme.primaryColor,

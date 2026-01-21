@@ -5,7 +5,7 @@ import '../../auth/presentation/bloc/auth_bloc.dart';
 import '../../auth/domain/user_role.dart';
 
 class DashboardScreen extends StatelessWidget {
-  const DashboardScreen({Key? key}) : super(key: key);
+  const DashboardScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +101,7 @@ class DashboardScreen extends StatelessWidget {
                 const SizedBox(height: 16),
 
                 // Statistics Cards
-                Row(
+                const Row(
                   children: [
                     Expanded(
                       child: _StatCard(
@@ -111,7 +111,7 @@ class DashboardScreen extends StatelessWidget {
                         color: Colors.blue,
                       ),
                     ),
-                    const SizedBox(width: 16),
+                    SizedBox(width: 16),
                     Expanded(
                       child: _StatCard(
                         icon: Icons.check_circle,
@@ -124,7 +124,7 @@ class DashboardScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
 
-                Row(
+                const Row(
                   children: [
                     Expanded(
                       child: _StatCard(
@@ -134,7 +134,7 @@ class DashboardScreen extends StatelessWidget {
                         color: Colors.red,
                       ),
                     ),
-                    const SizedBox(width: 16),
+                    SizedBox(width: 16),
                     Expanded(
                       child: _StatCard(
                         icon: Icons.history,

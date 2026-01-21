@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import '../../data/auth_repository.dart';
 import '../../domain/user.dart';
-import '../../domain/user_role.dart';
 
 // Events
 abstract class AuthEvent extends Equatable {
@@ -142,7 +141,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(AuthFailure(error: e.message));
       emit(const AuthUnauthenticated());
     } catch (e) {
-      emit(AuthFailure(error: 'An unexpected error occurred'));
+      emit(const AuthFailure(error: 'An unexpected error occurred'));
       emit(const AuthUnauthenticated());
     }
   }

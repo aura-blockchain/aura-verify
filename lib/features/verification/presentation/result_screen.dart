@@ -13,9 +13,9 @@ class ResultScreen extends StatelessWidget {
   final Map<String, dynamic> verificationData;
 
   const ResultScreen({
-    Key? key,
+    super.key,
     required this.verificationData,
-  }) : super(key: key);
+  });
 
   bool get isSuccess => verificationData['success'] == true;
   bool get isOver21 => verificationData['over21'] == true;
@@ -117,7 +117,7 @@ class ResultScreen extends StatelessWidget {
                     : isOver18
                         ? AuraTheme.warningOrange
                         : AuraTheme.errorRed)
-                .withOpacity(0.3),
+                .withValues(alpha: 0.3),
             blurRadius: 12,
             offset: const Offset(0, 4),
           ),
@@ -164,7 +164,7 @@ class ResultScreen extends StatelessWidget {
                     ? 'Allowed for 18+ purchases only'
                     : 'Not allowed for age-restricted purchases',
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Colors.white.withOpacity(0.9),
+                  color: Colors.white.withValues(alpha: 0.9),
                 ),
             textAlign: TextAlign.center,
           ),
@@ -242,7 +242,7 @@ class ResultScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: AuraTheme.errorRedLight.withOpacity(0.1),
+        color: AuraTheme.errorRedLight.withValues(alpha: 0.1),
         border: Border.all(color: AuraTheme.errorRed, width: 2),
         borderRadius: BorderRadius.circular(AppConfig.borderRadiusDefault),
       ),
@@ -309,7 +309,7 @@ class ResultScreen extends StatelessWidget {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, -2),
           ),

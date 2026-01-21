@@ -66,7 +66,7 @@ class VerificationRecord extends Equatable {
       resultType: VerificationResultType.fromString(map['result_type']),
       errorMessage: map['error_message'],
       networkLatencyMs: map['network_latency_ms'] ?? 0,
-      attributes: {},
+      attributes: const {},
     );
   }
 

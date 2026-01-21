@@ -12,28 +12,28 @@ class AttributeCard extends StatelessWidget {
   final VoidCallback? onTap;
 
   const AttributeCard({
-    Key? key,
+    super.key,
     required this.icon,
     required this.label,
     required this.value,
     this.isWarning = false,
     this.isError = false,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
-    Color iconColor = AuraTheme.primaryPurple;
+    var iconColor = AuraTheme.primaryPurple;
     Color? backgroundColor;
     Color? borderColor;
 
     if (isError) {
       iconColor = AuraTheme.errorRed;
-      backgroundColor = AuraTheme.errorRedLight.withOpacity(0.1);
+      backgroundColor = AuraTheme.errorRedLight.withValues(alpha: 0.1);
       borderColor = AuraTheme.errorRed;
     } else if (isWarning) {
       iconColor = AuraTheme.warningOrange;
-      backgroundColor = AuraTheme.warningOrangeLight.withOpacity(0.1);
+      backgroundColor = AuraTheme.warningOrangeLight.withValues(alpha: 0.1);
       borderColor = AuraTheme.warningOrange;
     }
 
@@ -58,7 +58,7 @@ class AttributeCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: iconColor.withOpacity(0.1),
+                  color: iconColor.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(AppConfig.borderRadiusSmall),
                 ),
                 child: Icon(
@@ -116,12 +116,12 @@ class ExpandableAttributeCard extends StatefulWidget {
   final List<Widget> details;
 
   const ExpandableAttributeCard({
-    Key? key,
+    super.key,
     required this.icon,
     required this.label,
     required this.value,
     required this.details,
-  }) : super(key: key);
+  });
 
   @override
   State<ExpandableAttributeCard> createState() => _ExpandableAttributeCardState();
@@ -154,7 +154,7 @@ class _ExpandableAttributeCardState extends State<ExpandableAttributeCard> {
                   Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: AuraTheme.primaryPurple.withOpacity(0.1),
+                      color: AuraTheme.primaryPurple.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(AppConfig.borderRadiusSmall),
                     ),
                     child: Icon(
@@ -231,10 +231,10 @@ class AttributeDetailRow extends StatelessWidget {
   final String value;
 
   const AttributeDetailRow({
-    Key? key,
+    super.key,
     required this.label,
     required this.value,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

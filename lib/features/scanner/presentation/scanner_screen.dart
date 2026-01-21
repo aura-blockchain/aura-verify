@@ -9,7 +9,7 @@ import 'scanner_overlay.dart';
 
 /// QR Code Scanner Screen
 class ScannerScreen extends StatefulWidget {
-  const ScannerScreen({Key? key}) : super(key: key);
+  const ScannerScreen({super.key});
 
   @override
   State<ScannerScreen> createState() => _ScannerScreenState();
@@ -160,24 +160,6 @@ class _ScannerScreenState extends State<ScannerScreen> {
     };
   }
 
-  /// Legacy parse method - kept for backwards compatibility
-  /// @deprecated Use _parseValidatedQRData instead
-  Map<String, dynamic> _parseQRData(String qrData) {
-    // Security: This method is deprecated - validation should happen first
-    // Left for backwards compatibility with any code paths that might use it
-    final validationResult = _validator.validate(qrData);
-
-    if (!validationResult.isValid) {
-      return {
-        'success': false,
-        'error': validationResult.errorMessage ?? 'Invalid QR code format',
-        'qrData': _validator.sanitize(qrData),
-      };
-    }
-
-    return _parseValidatedQRData(validationResult);
-  }
-
   @override
   Widget build(BuildContext context) {
     final isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
@@ -206,7 +188,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
               margin: const EdgeInsets.symmetric(horizontal: 24),
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.7),
+                color: Colors.black.withValues(alpha: 0.7),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Column(
@@ -245,7 +227,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
             top: 16,
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.5),
+                color: Colors.black.withValues(alpha: 0.5),
                 shape: BoxShape.circle,
               ),
               child: IconButton(
@@ -269,7 +251,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
             top: 16,
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.5),
+                color: Colors.black.withValues(alpha: 0.5),
                 shape: BoxShape.circle,
               ),
               child: IconButton(

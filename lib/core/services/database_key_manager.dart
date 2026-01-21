@@ -39,7 +39,7 @@ class DatabaseKeyManager {
     final storageKey = '$_keyPrefix$keyId';
 
     // Try to retrieve existing key
-    String? existingKey = await _secureStorage.read(key: storageKey);
+    var existingKey = await _secureStorage.read(key: storageKey);
     if (existingKey != null && existingKey.isNotEmpty) {
       return existingKey;
     }

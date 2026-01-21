@@ -12,7 +12,7 @@ class AuraAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color? foregroundColor;
 
   const AuraAppBar({
-    Key? key,
+    super.key,
     required this.title,
     this.actions,
     this.leading,
@@ -20,7 +20,7 @@ class AuraAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.elevation = 0,
     this.backgroundColor,
     this.foregroundColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,7 @@ class AuraSliverAppBar extends StatelessWidget {
   final Widget? flexibleSpace;
 
   const AuraSliverAppBar({
-    Key? key,
+    super.key,
     required this.title,
     this.actions,
     this.leading,
@@ -65,7 +65,7 @@ class AuraSliverAppBar extends StatelessWidget {
     this.floating = false,
     this.expandedHeight = 120.0,
     this.flexibleSpace,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

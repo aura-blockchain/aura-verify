@@ -149,7 +149,7 @@ GoRouter createAppRouter({
 
 /// Placeholder for Audit Log Screen
 class AuditLogPlaceholderScreen extends StatelessWidget {
-  const AuditLogPlaceholderScreen({Key? key}) : super(key: key);
+  const AuditLogPlaceholderScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -178,7 +178,7 @@ class AuditLogPlaceholderScreen extends StatelessWidget {
 
 /// Placeholder for User Management Screen
 class UserManagementPlaceholderScreen extends StatelessWidget {
-  const UserManagementPlaceholderScreen({Key? key}) : super(key: key);
+  const UserManagementPlaceholderScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -210,9 +210,9 @@ class ErrorScreen extends StatelessWidget {
   final String error;
 
   const ErrorScreen({
-    Key? key,
+    super.key,
     required this.error,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

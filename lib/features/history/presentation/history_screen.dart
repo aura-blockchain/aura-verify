@@ -68,7 +68,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AuraTheme.primaryColor.withOpacity(0.1),
+        color: AuraTheme.primaryColor.withValues(alpha: 0.1),
         border: Border(
           bottom: BorderSide(
             color: Colors.grey.shade200,
@@ -149,7 +149,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
           _filterType = selected ? type : 'all';
         });
       },
-      selectedColor: AuraTheme.primaryColor.withOpacity(0.2),
+      selectedColor: AuraTheme.primaryColor.withValues(alpha: 0.2),
       checkmarkColor: AuraTheme.primaryColor,
     );
   }
@@ -229,8 +229,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
       child: ListTile(
         leading: CircleAvatar(
           backgroundColor: item.isValid
-              ? AuraTheme.successColor.withOpacity(0.1)
-              : AuraTheme.errorColor.withOpacity(0.1),
+              ? AuraTheme.successColor.withValues(alpha: 0.1)
+              : AuraTheme.errorColor.withValues(alpha: 0.1),
           child: Icon(
             item.isValid ? Icons.check : Icons.close,
             color: item.isValid ? AuraTheme.successColor : AuraTheme.errorColor,

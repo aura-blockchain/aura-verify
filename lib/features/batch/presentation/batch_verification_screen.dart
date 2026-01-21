@@ -7,7 +7,7 @@ import '../../../core/services/export_service.dart';
 import '../../../features/history/domain/verification_record.dart';
 
 class BatchVerificationScreen extends StatefulWidget {
-  const BatchVerificationScreen({Key? key}) : super(key: key);
+  const BatchVerificationScreen({super.key});
 
   @override
   State<BatchVerificationScreen> createState() => _BatchVerificationScreenState();
@@ -124,7 +124,7 @@ class _BatchVerificationScreenState extends State<BatchVerificationScreen> {
         MobileScanner(
           controller: _scannerController,
           onDetect: (capture) {
-            final List<Barcode> barcodes = capture.barcodes;
+            final barcodes = capture.barcodes;
             for (final barcode in barcodes) {
               if (barcode.rawValue != null) {
                 _handleScan(barcode.rawValue!);
@@ -218,7 +218,7 @@ class _BatchVerificationScreenState extends State<BatchVerificationScreen> {
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundColor: color.withOpacity(0.1),
+          backgroundColor: color.withValues(alpha: 0.1),
           child: Icon(icon, color: color),
         ),
         title: Text('Item ${index + 1}'),
@@ -347,10 +347,10 @@ class _BatchVerificationScreenState extends State<BatchVerificationScreen> {
 
     _showSnackBar('Verifying ${_scannedItems.length} items...', Colors.blue);
 
-    int verified = 0;
-    int failed = 0;
+    var verified = 0;
+    var failed = 0;
 
-    for (int i = 0; i < _scannedItems.length; i++) {
+    for (var i = 0; i < _scannedItems.length; i++) {
       if (_scannedItems[i].isValid == null) {
         try {
           final result = await _verificationService.verify(

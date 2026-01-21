@@ -53,14 +53,12 @@ repos:
         args: ['format']
         language: system
         files: '\\.(dart)$'
-        stages: [manual]
       - id: dart-analyze
         name: Dart analyze
         entry: dart
         args: ['analyze']
         language: system
         pass_filenames: false
-        stages: [manual]
 
 exclude: |
   (?x)^(

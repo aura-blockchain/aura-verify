@@ -1,9 +1,7 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:uuid/uuid.dart';
-import '../config/network_config.dart';
 import '../../features/verification/bloc/verification_bloc.dart';
 
 /// Certificate pins for Aura network endpoints
@@ -35,7 +33,6 @@ class CertificatePins {
 /// Security: Implements certificate pinning for production networks
 class AuraVerificationService implements VerificationService {
   final Dio _dio;
-  final NetworkConfig _config;
   final Uuid _uuid = const Uuid();
   final bool _enableCertPinning;
 
@@ -43,8 +40,7 @@ class AuraVerificationService implements VerificationService {
     required NetworkConfig config,
     Dio? dio,
     bool enableCertPinning = true,
-  })  : _config = config,
-        _enableCertPinning = enableCertPinning,
+  })  : _enableCertPinning = enableCertPinning,
         _dio = dio ?? Dio() {
     // Validate security FIRST - fail fast if configuration is insecure
     config.validateSecurity();
@@ -59,7 +55,9 @@ class AuraVerificationService implements VerificationService {
 
     // Configure certificate pinning for production networks
     if (enableCertPinning && config.network != 'local' && dio == null) {
+    if (_enableCertPinning) {
       _configureCertificatePinning(config.network);
+    }
     }
   }
 

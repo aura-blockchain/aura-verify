@@ -47,7 +47,7 @@ class AuraTheme {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.light,
-      colorScheme: ColorScheme.light(
+      colorScheme: const ColorScheme.light(
         primary: primaryPurple,
         primaryContainer: primaryPurpleLight,
         secondary: secondaryTeal,
@@ -230,7 +230,7 @@ class AuraTheme {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.dark,
-      colorScheme: ColorScheme.dark(
+      colorScheme: const ColorScheme.dark(
         primary: primaryPurpleLight,
         primaryContainer: primaryPurple,
         secondary: secondaryTealLight,
@@ -243,12 +243,12 @@ class AuraTheme {
         onError: textPrimary,
       ),
       scaffoldBackgroundColor: backgroundDark,
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         backgroundColor: surfaceDark,
         foregroundColor: textOnPrimary,
         elevation: 0,
         centerTitle: true,
-        titleTextStyle: const TextStyle(
+        titleTextStyle: TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.w600,
           color: textOnPrimary,

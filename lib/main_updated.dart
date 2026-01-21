@@ -7,7 +7,6 @@ import 'features/auth/data/auth_repository.dart';
 import 'features/auth/presentation/bloc/auth_bloc.dart';
 import 'features/verification/bloc/verification_bloc.dart';
 import 'core/services/aura_verification_service.dart';
-import 'core/config/network_config.dart' as config;
 
 void main() async {
   // Ensure Flutter binding is initialized
@@ -35,7 +34,7 @@ void main() async {
   await authRepository.initialize();
 
   // Initialize verification service
-  final networkConfig = NetworkConfig.mainnet;
+  const networkConfig = NetworkConfig.mainnet;
   final verificationService = AuraVerificationService(config: networkConfig);
 
   // Run the application
@@ -53,10 +52,10 @@ class AuraVerifyBusinessApp extends StatelessWidget {
   final VerificationService verificationService;
 
   const AuraVerifyBusinessApp({
-    Key? key,
+    super.key,
     required this.authRepository,
     required this.verificationService,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +80,7 @@ class AuraVerifyBusinessApp extends StatelessWidget {
 
 /// App view that rebuilds when auth state changes
 class AppView extends StatelessWidget {
-  const AppView({Key? key}) : super(key: key);
+  const AppView({super.key});
 
   @override
   Widget build(BuildContext context) {

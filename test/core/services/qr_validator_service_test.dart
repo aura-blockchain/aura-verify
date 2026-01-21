@@ -36,7 +36,7 @@ void main() {
 
     test('should reject input with null bytes', () {
       // Input needs to be >= minInputSize (50) to pass size check first
-      final input = 'a' * 60 + '\x00' + 'b' * 20;
+      final input = '${'a' * 60}\x00${'b' * 20}';
       final result = validator.validate(input);
       expect(result.isValid, false);
       expect(result.error, QRValidationError.invalidCharacters);
@@ -44,7 +44,7 @@ void main() {
 
     test('should reject input with control characters', () {
       // Input needs to be >= minInputSize (50) to pass size check first
-      final input = 'a' * 60 + '\x01\x02\x03' + 'b' * 20;
+      final input = '${'a' * 60}\x01\x02\x03${'b' * 20}';
       final result = validator.validate(input);
       expect(result.isValid, false);
       expect(result.error, QRValidationError.invalidCharacters);
@@ -62,7 +62,7 @@ void main() {
 
     test('should reject non-object JSON', () {
       // Array with enough content to pass size check
-      final arrayJson = '[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]';
+      const arrayJson = '[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]';
       final result = validator.validate(arrayJson);
       expect(result.isValid, false);
       expect(result.error, QRValidationError.invalidStructure);
@@ -82,7 +82,7 @@ void main() {
     });
 
     test('should reject JSON with excessive nesting depth', () {
-      Map<String, dynamic> nested = {'value': 'leaf'};
+      var nested = <String, dynamic>{'value': 'leaf'};
       for (var i = 0; i < 15; i++) {
         nested = {'nested': nested};
       }
@@ -234,20 +234,20 @@ void main() {
 
   group('QRValidatorService - Sanitization', () {
     test('should remove null bytes during sanitization', () {
-      final input = 'valid\x00data';
+      const input = 'valid\x00data';
       final sanitized = validator.sanitize(input);
       expect(sanitized, 'validdata');
       expect(sanitized.contains('\x00'), false);
     });
 
     test('should remove control characters during sanitization', () {
-      final input = 'valid\x01\x02\x03data';
+      const input = 'valid\x01\x02\x03data';
       final sanitized = validator.sanitize(input);
       expect(sanitized, 'validdata');
     });
 
     test('should preserve newlines and tabs', () {
-      final input = 'valid\n\tdata';
+      const input = 'valid\n\tdata';
       final sanitized = validator.sanitize(input);
       expect(sanitized, 'valid\n\tdata');
     });

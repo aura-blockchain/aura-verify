@@ -86,7 +86,7 @@ class AuditEntry extends Equatable {
       username: map['username'] ?? '',
       action: AuditAction.fromString(map['action']),
       description: map['description'] ?? '',
-      metadata: {},
+      metadata: const {},
       timestamp: DateTime.tryParse(map['timestamp'] ?? '') ?? DateTime.now(),
       ipAddress: map['ip_address'],
       deviceInfo: map['device_info'],

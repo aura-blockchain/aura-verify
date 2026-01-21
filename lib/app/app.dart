@@ -5,7 +5,7 @@ import 'theme.dart';
 
 /// Main application widget
 class AuraVerifyBusinessApp extends StatelessWidget {
-  const AuraVerifyBusinessApp({Key? key}) : super(key: key);
+  const AuraVerifyBusinessApp({super.key});
 
   @override
   Widget build(BuildContext context) {

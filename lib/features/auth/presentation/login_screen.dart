@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/auth_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -59,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 end: Alignment.bottomCenter,
                 colors: [
                   theme.colorScheme.primary,
-                  theme.colorScheme.primary.withOpacity(0.8),
+                  theme.colorScheme.primary.withValues(alpha: 0.8),
                 ],
               ),
             ),

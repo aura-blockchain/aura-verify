@@ -10,12 +10,12 @@ class VerificationBadge extends StatefulWidget {
   final bool animate;
 
   const VerificationBadge({
-    Key? key,
+    super.key,
     required this.isSuccess,
     required this.title,
     required this.subtitle,
     this.animate = true,
-  }) : super(key: key);
+  });
 
   @override
   State<VerificationBadge> createState() => _VerificationBadgeState();
@@ -33,7 +33,7 @@ class _VerificationBadgeState extends State<VerificationBadge>
 
     if (widget.animate) {
       _controller = AnimationController(
-        duration: Duration(milliseconds: AppConfig.animationDurationLong),
+        duration: const Duration(milliseconds: AppConfig.animationDurationLong),
         vsync: this,
       );
 
@@ -102,7 +102,7 @@ class _VerificationBadgeState extends State<VerificationBadge>
         borderRadius: BorderRadius.circular(AppConfig.borderRadiusLarge),
         boxShadow: [
           BoxShadow(
-            color: backgroundColor.withOpacity(0.3),
+            color: backgroundColor.withValues(alpha: 0.3),
             blurRadius: 20,
             offset: const Offset(0, 8),
           ),
@@ -115,7 +115,7 @@ class _VerificationBadgeState extends State<VerificationBadge>
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.2),
+              color: Colors.white.withValues(alpha: 0.2),
               shape: BoxShape.circle,
             ),
             child: Icon(
@@ -143,7 +143,7 @@ class _VerificationBadgeState extends State<VerificationBadge>
           Text(
             widget.subtitle,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  color: Colors.white.withOpacity(0.9),
+                  color: Colors.white.withValues(alpha: 0.9),
                 ),
             textAlign: TextAlign.center,
           ),
@@ -154,7 +154,7 @@ class _VerificationBadgeState extends State<VerificationBadge>
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.2),
+              color: Colors.white.withValues(alpha: 0.2),
               borderRadius: BorderRadius.circular(AppConfig.borderRadiusSmall),
             ),
             child: Row(
@@ -196,10 +196,10 @@ class CompactVerificationBadge extends StatelessWidget {
   final double size;
 
   const CompactVerificationBadge({
-    Key? key,
+    super.key,
     required this.isSuccess,
     this.size = 32,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -214,7 +214,7 @@ class CompactVerificationBadge extends StatelessWidget {
         shape: BoxShape.circle,
         boxShadow: [
           BoxShadow(
-            color: color.withOpacity(0.3),
+            color: color.withValues(alpha: 0.3),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),

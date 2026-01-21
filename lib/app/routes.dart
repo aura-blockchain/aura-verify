@@ -70,7 +70,7 @@ final GoRouter appRouter = GoRouter(
 
 /// Placeholder for History Screen (to be implemented)
 class HistoryPlaceholderScreen extends StatelessWidget {
-  const HistoryPlaceholderScreen({Key? key}) : super(key: key);
+  const HistoryPlaceholderScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +99,7 @@ class HistoryPlaceholderScreen extends StatelessWidget {
 
 /// Placeholder for Settings Screen (to be implemented)
 class SettingsPlaceholderScreen extends StatelessWidget {
-  const SettingsPlaceholderScreen({Key? key}) : super(key: key);
+  const SettingsPlaceholderScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -131,9 +131,9 @@ class ErrorScreen extends StatelessWidget {
   final String error;
 
   const ErrorScreen({
-    Key? key,
+    super.key,
     required this.error,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
