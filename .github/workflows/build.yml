@@ -59,7 +59,7 @@ jobs:
         run: flutter build apk --release
 
       - name: Upload APK
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: android-apk
           path: build/app/outputs/flutter-apk/app-release.apk
@@ -93,7 +93,7 @@ jobs:
           zip -r ../../../app-release.ipa Payload
 
       - name: Upload IPA
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: ios-ipa
           path: app-release.ipa
@@ -120,7 +120,7 @@ jobs:
         run: flutter build web --release
 
       - name: Upload Web Build
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: web-build
           path: build/web/
@@ -152,7 +152,7 @@ jobs:
         run: flutter build linux --release
 
       - name: Upload Linux Build
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: linux-build
           path: build/linux/x64/release/bundle/
